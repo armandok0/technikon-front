@@ -1,0 +1,15 @@
+.file-not-found-container {
+    text-align: center;
+    margin-top: 100px;
+    font-family: Arial, sans-serif;
+  }
+
+  .file-not-found-container h1 {
+    font-size: 3rem;
+    color: #f10e0e;
+  }
+  
+  .file-not-found-container p {
+    font-size: 1.5rem;
+    color: #000000;
+  }
