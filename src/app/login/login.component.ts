@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CommonModule } from '@angular/common';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
-import { LoginResponse } from '../models/login-response.model'; 
+import { LoginResponse } from '../models/login.model'; 
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -36,30 +36,24 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  onLogin() {
-    if (this.loginForm.valid) {
-      const loginData = this.loginForm.value;
-
-      this.loginService.login(loginData).subscribe({
-        next: (response: LoginResponse) => {
-          if (response) {
-            this.loginResponse = response;
-
-            if (response.role === 'USER') {
-              this.router.navigate(['/owner-home']);
-            } else if (response.role === 'ADMIN') {
-              this.router.navigate(['/admin-home']); 
-            }
-            alert('Login successful!');
-          }
-        },
-        error: (err) => {
-          console.error('Login failed', err);
-          alert('Login failed. Please check your credentials.');
+onLogin() {
+  if (this.loginForm.valid) {
+    const loginData = this.loginForm.value;
+    this.loginService.login(loginData).subscribe({
+      next: (response: LoginResponse) => {
+        if (response) {
+          localStorage.setItem('user', JSON.stringify(response)); 
+          this.router.navigate([response.role === 'USER' ? '/owner-home' : '/admin-home']);
+          alert('Login successful!');
         }
-      });
-    } else {
-      console.log('Form is invalid');
-    }
+      },
+      error: (err) => {
+        console.error('Login failed', err);
+        alert('Login failed. Please check your credentials.');
+      }
+    });
+  } else {
+    console.log('Form is invalid');
   }
+}
 }
