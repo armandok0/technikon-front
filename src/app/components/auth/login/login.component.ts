@@ -1,10 +1,10 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
-import { LoginResponse } from '../models/login.model'; 
 import { RouterModule } from '@angular/router';
+import { LoginService } from '../../../services/login.service';
+import { LoginResponse } from '../../../models/login.model';
 
 @Component({
   selector: 'app-login',

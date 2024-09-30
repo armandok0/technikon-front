@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RegisterService } from '../services/register.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { RegisterService } from '../../../services/register.service';
 
 @Component({
   selector: 'app-register',

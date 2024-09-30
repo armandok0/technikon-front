@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarComponent } from "../sidebar/sidebar.component";
+import { SidebarComponent } from "../../../sidebar/sidebar.component";
 import { RouterModule } from '@angular/router';
-import { OwnerService } from '../services/owner.service';
-import { Repair } from '../models/repair.model';
+import { OwnerService } from '../../../services/owner.service';
+import { Repair } from '../../../models/repair.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

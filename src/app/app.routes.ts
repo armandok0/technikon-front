@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './login/login.component';
-import { OwnerHomeComponent } from './owner-home/owner-home.component';
-import { AdminHomeComponent } from './admin-home/admin-home.component';
-import { RegisterComponent } from './register/register.component';
-import { FileNotFoundComponent } from './file-not-found/file-not-found.component';
-import { OwnerPropertiesComponent } from './owner-properties/owner-properties.component';
-import { OwnerRepairsComponent } from './owner-repairs/owner-repairs.component';
-import { OwnerDetailsComponent } from './owner-details/owner-details.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { OwnerHomeComponent } from './components/owner/owner-home/owner-home.component';
+import { OwnerDetailsComponent } from './components/owner/owner-details/owner-details.component';
+import { OwnerPropertiesComponent } from './components/owner/owner-properties/owner-properties.component';
+import { OwnerRepairsComponent } from './components/owner/owner-repairs/owner-repairs.component';
+import { AdminHomeComponent } from './components/admin/admin-home/admin-home.component';
+import { FileNotFoundComponent } from './components/errors/file-not-found/file-not-found.component';
+
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
