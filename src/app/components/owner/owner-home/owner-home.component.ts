@@ -1,19 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../../../sidebar/sidebar.component";
 import { RouterModule } from '@angular/router';
+import { PropertyService } from '../../../services/property.service';
+import { Property } from '../../../models/property.model';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-owner-home',
   standalone: true,
-  imports: [SidebarComponent, RouterModule], 
+  imports: [SidebarComponent, RouterModule, CommonModule], 
   templateUrl: './owner-home.component.html',
-  styleUrl: './owner-home.component.css'
+  styleUrls: ['./owner-home.component.css']
 })
-export class OwnerHomeComponent {
+export class OwnerHomeComponent implements OnInit {
   userName: string;
+  latestProperty: Property | null = null; 
+  mapUrl: SafeResourceUrl | null = null;
 
-  constructor() {
+  constructor(private propertyService: PropertyService, private sanitizer: DomSanitizer) {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.userName = user.name;
+  }
+
+  ngOnInit(): void {
+    this.propertyService.getLatestProperty().subscribe({
+      next: (property) => {
+        this.latestProperty = property; 
+        if (property?.propertyAddress) {
+          this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
+            `https://www.google.com/maps/embed/v1/place?key=AIzaSyApBxXUmShQCgKwTGP6EMuCt6TUBmhzMWk&q=${property.propertyAddress}`
+          );
+        }
+      },
+      error: (error) => console.error('Error fetching latest property', error)
+    });
   }
 }

@@ -1,13 +1,40 @@
 <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3 col-lg-2 bg-dark vh-100">
-        <app-sidebar></app-sidebar>
-      </div>
-      <div class="col-md-9 col-lg-10">
-        <div class="container mt-4">
-          <h4>Welcome, {{ userName }}!</h4>
-          <p>This is your homepage. You can navigate to different sections from the sidebar.</p>
+  <div class="row">
+    <div class="col-md-3 col-lg-2 bg-dark vh-100 sidebar">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-9 col-lg-10">
+      <div class="container mt-4">
+        <h4 class="text">Welcome, {{ userName }}!</h4>
+        <p class="lead">
+          This is your one-stop solution for all your renovation needs. Here, you can manage your properties and track the progress of your renovation projects with ease.
+        </p>
+        <div *ngIf="latestProperty; else noPropertyMessage" class="latest-property">
+          <h5 class="mt-4">Latest Property</h5>
+          <div class="property-details card p-3 mb-4">
+            <h6 style="color: black;"><strong>Address:</strong> {{ latestProperty.propertyAddress }}</h6>
+            <h6 style="color: black;"><strong>Type:</strong> {{ latestProperty.propertyType }}</h6>
+            <h6 style="color: black;"><strong>Construction Year:</strong> {{ latestProperty.constructionYear }}</h6>
+          </div>
+          <div class="map-container mb-4" style="text-align: center;">
+            <iframe 
+              width="100%" 
+              height="500" 
+              style="border: 1px solid #ccc; border-radius: 5px;" 
+              loading="lazy" 
+              allowfullscreen 
+              [src]="mapUrl">
+            </iframe>
+          </div>
         </div>
+        <ng-template #noPropertyMessage>
+          <div class="text-center">
+            <img src="home.png" alt="No properties found" style="width: 600px; height: auto;" />
+            <p class="mt-2">It looks like you don't have any properties listed yet. Start by adding your first property by contacting our support team.</p>
+            <p class="mt-2">More features are coming soon so stay tuned!</p>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>
+</div>
