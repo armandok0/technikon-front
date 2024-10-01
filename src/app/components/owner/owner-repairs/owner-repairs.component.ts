@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarComponent } from "../../../sidebar/sidebar.component";
 import { RouterModule } from '@angular/router';
-import { OwnerService } from '../../../services/owner.service';
+import { RepairService } from '../../../services/repair.service';
 import { Repair } from '../../../models/repair.model';
 import { CommonModule } from '@angular/common';
 
@@ -14,19 +14,13 @@ import { CommonModule } from '@angular/common';
 })
 export class OwnerRepairsComponent implements OnInit {
   repairs: Repair[] = [];
-  userVAT: string;
 
-  constructor(private ownerService: OwnerService) {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    this.userVAT = user.vat;
-  }
+  constructor(private ownerService: RepairService) {}
 
   ngOnInit(): void {
-    if (this.userVAT) {
-      this.ownerService.getRepairsByOwner(this.userVAT).subscribe({
-        next: (repairs) => this.repairs = repairs,
-        error: (error) => console.error('Error fetching repairs', error)
-      });
-    }
+    this.ownerService.getRepairsByOwner().subscribe({
+      next: (repairs) => this.repairs = repairs,
+      error: (error) => console.error('Error fetching repairs', error)
+    });
   }
 }

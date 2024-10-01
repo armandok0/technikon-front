@@ -1,10 +1,135 @@
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-md-3 col-lg-2 bg-dark vh-100">
-        <app-sidebar></app-sidebar>
-      </div>
-      <div class="col-md-9 col-lg-10">
+<div class="container-fluid vh-100">
+  <div class="row">
+    <div class="col-md-3 col-lg-2 bg-dark vh-100">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="col-md-8 col-lg-10">
+      <div class="container mt-4">
+        <h4>Edit Details</h4>
+        <form [formGroup]="userDetailsForm" (ngSubmit)="onUpdate()" class="border p-4 rounded shadow">
+
+          <div class="form-group mb-3">
+            <label for="id" class="form-label">ID:</label>
+            <input id="id" class="form-control" formControlName="id" placeholder="Enter your ID" />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="vat" class="form-label">VAT:</label>
+            <input
+              id="vat"
+              class="form-control"
+              formControlName="vat"
+              placeholder="Enter your VAT"
+              required
+            />
+            <div *ngIf="userDetailsForm.get('vat')?.touched && userDetailsForm.get('vat')?.invalid" class="text-danger">
+              <div *ngIf="userDetailsForm.get('vat')?.errors?.['required']">VAT is required.</div>
+              <div *ngIf="userDetailsForm.get('vat')?.errors?.['minlength']">VAT must be 9 digits long.</div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input
+              id="name"
+              class="form-control"
+              formControlName="name"
+              placeholder="Enter your name"
+              required
+            />
+            <div *ngIf="userDetailsForm.get('name')?.touched && userDetailsForm.get('name')?.invalid" class="text-danger">
+              <div *ngIf="userDetailsForm.get('name')?.errors?.['required']">Name is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="surname" class="form-label">Surname:</label>
+            <input
+              id="surname"
+              class="form-control"
+              formControlName="surname"
+              placeholder="Enter your surname"
+              required
+            />
+            <div *ngIf="userDetailsForm.get('surname')?.touched && userDetailsForm.get('surname')?.invalid" class="text-danger">
+              <div *ngIf="userDetailsForm.get('surname')?.errors?.['required']">Surname is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="address" class="form-label">Address:</label>
+            <input
+              id="address"
+              class="form-control"
+              formControlName="address"
+              placeholder="Enter your address"
+              required
+            />
+            <div *ngIf="userDetailsForm.get('address')?.touched && userDetailsForm.get('address')?.invalid" class="text-danger">
+              <div *ngIf="userDetailsForm.get('address')?.errors?.['required']">Address is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="phoneNumber" class="form-label">Phone Number:</label>
+            <input
+              id="phoneNumber"
+              class="form-control"
+              formControlName="phoneNumber"
+              placeholder="Enter your phone number"
+              required
+            />
+            <div *ngIf="userDetailsForm.get('phoneNumber')?.touched && userDetailsForm.get('phoneNumber')?.invalid" class="text-danger">
+              <div *ngIf="userDetailsForm.get('phoneNumber')?.errors?.['pattern']">Phone number must be exactly 10 digits.</div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="email" class="form-label">Email:</label>
+            <input
+              id="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Enter your email"
+              required
+            />
+            <div *ngIf="userDetailsForm.get('email')?.touched && userDetailsForm.get('email')?.invalid" class="text-danger">
+              <div *ngIf="userDetailsForm.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="userDetailsForm.get('email')?.errors?.['email']">Invalid email format.</div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="username" class="form-label">Username:</label>
+            <input
+              id="username"
+              class="form-control"
+              formControlName="username"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="password" class="form-label">Password:</label>
+            <input
+              id="password"
+              type="password"
+              class="form-control"
+              formControlName="password"
+              placeholder="Enter your password"
+            />
+            <div *ngIf="userDetailsForm.get('password')?.touched && userDetailsForm.get('password')?.invalid" class="text-danger">
+              <div *ngIf="userDetailsForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-3" [disabled]="userDetailsForm.invalid">
+            Update
+          </button>
+          <button type="button" class="btn btn-danger mt-3 ms-3" (click)="confirmDelete()">Delete User</button>
+        </form>
       </div>
     </div>
   </div>
-  
+</div>
