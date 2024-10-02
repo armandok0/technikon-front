@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SidebarComponent } from "../../../sidebar/sidebar.component";
 import { RouterModule } from '@angular/router';
 import { RepairService } from '../../../services/repair.service';
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
 export class OwnerRepairsComponent implements OnInit {
   repairs: Repair[] = [];
 
-  constructor(private ownerService: RepairService) {}
+  private ownerService = inject(RepairService);
 
   ngOnInit(): void {
     this.ownerService.getRepairsByOwner().subscribe({

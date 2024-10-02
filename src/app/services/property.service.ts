@@ -11,9 +11,7 @@ export class PropertyService {
   private http = inject(HttpClient);
   private apiUrl = 'http://localhost:8080/technikon/resources/properties/';
   private authService = inject(AuthService);
-
-  constructor() {}
-
+  
   getPropertiesByOwner(): Observable<Property[]> {
     const vat = this.authService.getLoggedInUserVat();
     if (!vat) {

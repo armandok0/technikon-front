@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { SidebarComponent } from "../../../sidebar/sidebar.component";
 import { RouterModule } from '@angular/router';
 import { PropertyService } from '../../../services/property.service';
@@ -18,16 +18,23 @@ export class OwnerHomeComponent implements OnInit {
   latestProperty: Property | null = null; 
   mapUrl: SafeResourceUrl | null = null;
 
-  constructor(private propertyService: PropertyService, private sanitizer: DomSanitizer) {
+  private propertyService = inject(PropertyService);
+  private sanitizer = inject(DomSanitizer);
+
+  constructor() {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
     this.userName = user.name;
   }
 
   ngOnInit(): void {
+    this.fetchLatestProperty();
+  }
+
+  fetchLatestProperty(): void {
     this.propertyService.getLatestProperty().subscribe({
       next: (property) => {
         this.latestProperty = property; 
-        if (property?.propertyAddress) {
+        if (property && property.propertyAddress) {
           this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
             `https://www.google.com/maps/embed/v1/place?key=AIzaSyApBxXUmShQCgKwTGP6EMuCt6TUBmhzMWk&q=${property.propertyAddress}`
           );

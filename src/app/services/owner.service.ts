@@ -12,8 +12,6 @@ export class OwnerService {
   private apiUrl = 'http://localhost:8080/technikon/resources/owners/';
   private authService = inject(AuthService); 
 
-  constructor() {}
-
   getOwnerByVat(): Observable<LoginResponse> {
     const vat = this.authService.getLoggedInUserVat();
     if (!vat) {

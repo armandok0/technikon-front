@@ -12,8 +12,6 @@ export class RepairService {
   private apiUrl = 'http://localhost:8080/technikon/resources/repairs/owner/';
   private authService = inject(AuthService); 
 
-  constructor() {}
-
   getRepairsByOwner(): Observable<Repair[]> {
     const vat = this.authService.getLoggedInUserVat();
     if (!vat) {

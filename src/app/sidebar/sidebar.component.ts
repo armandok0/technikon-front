@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent {
 
-  constructor(private router: Router) {}
+  router = inject(Router);
 
   logout() {
-    localStorage.clear(); 
-    this.router.navigate(['/login']); 
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

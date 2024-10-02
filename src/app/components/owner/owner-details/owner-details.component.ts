@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { OwnerService } from '../../../services/owner.service';
@@ -17,11 +17,11 @@ export class OwnerDetailsComponent implements OnInit {
   userDetailsForm: FormGroup;
   originalData: LoginResponse | null = null;
 
-  constructor(
-    private fb: FormBuilder, 
-    private ownerService: OwnerService, 
-    private router: Router
-  ) {
+  private fb = inject(FormBuilder);
+  private ownerService = inject(OwnerService);
+  private router = inject(Router);
+
+  constructor() {
     this.userDetailsForm = this.fb.group({
       id: [{ value: '', disabled: true }],
       vat: [{ value: '', disabled: true }],
