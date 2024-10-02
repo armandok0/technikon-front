@@ -115,17 +115,17 @@ export class OwnerDetailsComponent implements OnInit {
   confirmDelete() {
     const confirmation = confirm('Are you sure you want to delete?');
     if (confirmation) {
-      this.ownerService.deleteUser().subscribe({
+      this.ownerService.updateUserStatus().subscribe({
         next: (response) => {
-          console.log('User deleted response:', response);
-          alert('User deleted successfully!');
+          console.log('User status updated response:', response);
+          alert('User status updated successfully!');
           this.router.navigate(['/login']);
         },
         error: (error) => {
-          console.error('Error deleting user', error);
-          alert('Failed to delete user.');
+          console.error('Error updating user status', error);
+          alert('Failed to update user status.');
         }
       });
     }
-  }
+  }  
 }

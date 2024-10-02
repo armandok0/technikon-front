@@ -67,15 +67,15 @@ export class OwnerService {
     );
   }
 
-  deleteUser(): Observable<string> {
+  updateUserStatus(): Observable<string> {
     const vat = this.authService.getLoggedInUserVat();
     if (!vat) {
       throw new Error('VAT not found for the logged-in user');
     }
-
+  
     const url = `${this.apiUrl}${vat}`; 
-    return this.http.delete(url, { responseType: 'text' }).pipe(
-      catchError((error) => throwError(() => 'Error deleting user: ' + (error.error || 'Something went wrong')))
+    return this.http.put(url, null, { responseType: 'text' }).pipe(
+      catchError((error) => throwError(() => error.error || 'Error updating user status'))
     );
   }
 }

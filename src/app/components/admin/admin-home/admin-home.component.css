@@ -1,0 +1,16 @@
+.admin-under-construction-container {
+    text-align: center;
+    margin-top: 100px;
+    font-family: Arial, sans-serif;
+}
+
+.admin-under-construction-container p {
+    font-size: 1.5rem;
+    color: #000000;
+}
+
+.construction-image {
+    width: 600px; 
+    height: auto;
+    margin-top: 20px;
+}

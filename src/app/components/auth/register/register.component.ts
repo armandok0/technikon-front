@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
   
       this.registerService.register(registerData).subscribe({
         next: (response: any) => {
-          console.log('API Response:', response);
+          console.log('Response', response);
           alert('Registration successful!');
           this.router.navigate(['/login']);
         },
