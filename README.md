@@ -1,27 +1,48 @@
-# TechnikonFront
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.5.
+# Technikon - Frontend Overview
 
-## Development server
+### Key Features Implemented:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+1. **Login and Register**:  
+   The login and register functionality has been implemented. Users are redirected to specific pages based on their roles (Property Owner or Admin).
 
-## Code scaffolding
+2. **Owner Homepage**:  
+   The homepage for property owners displays the latest property information and a map of where is that property located. 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+3. **Edit Account Page**:  
+   Users can update or delete their account information via this page. The update and delete functionality has been fully implemented.
 
-## Build
+4. **Property Page**:  
+   The owner can view their properties in this page. All the properties linked to the owner are displayed.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+5. **Repairs Page**:  
+   Similar to the property page, the owner can view repairs related to their properties.
+-  These pages are accessible through a sidebar, offering a seamless user experience.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation Requirements
+- **Node.js**
+- **Angular CLI**
+- **Postman** (for API testing)
 
-## Running end-to-end tests
+## Setup Instructions
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### 1. Clone the Repository
+To clone the frontend repository, run the following command:
+```bash
+git clone https://github.com/armandok0/technicon-web
+```
 
-## Further help
+### 2. Install Dependencies
+Navigate to the project directory and install the necessary dependencies using:
+```bash
+cd technikon-front
+npm install
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 3. Running the Application
+To run the application locally, use:
+```bash
+ng serve
+```
+This will start the frontend application on `http://localhost:4200/`.
