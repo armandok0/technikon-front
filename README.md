@@ -30,7 +30,7 @@
 ### 1. Clone the Repository
 To clone the frontend repository, run the following command:
 ```bash
-git clone https://github.com/armandok0/technicon-web
+git clone https://github.com/armandok0/technikon-front
 ```
 
 ### 2. Install Dependencies
